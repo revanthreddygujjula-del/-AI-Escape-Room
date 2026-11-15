@@ -40,4 +40,16 @@ Version 1 relies on the model to remember items and enforce rules; it may halluc
 
 Version 2 uses simple keyword parsing and may misinterpret complex language. Optional Gemini narration can still contradict validated outcomes. Future work: schema-validated action parsing and stronger narration filtering.
 
-See `test_cases.md` and `report_template.md`. Add your own screenshots and actual observed test results before submission.
+## Project Documentation
+
+The AI Escape Room project has been implemented and manually tested.
+
+- **Version 1:** Gemini-powered interactive escape room.
+- **Version 2:** Python-based action validation and inventory management.
+- **Testing:** Results are documented in [test_cases.md](test_cases.md).
+- **Project Report:** Observations and improvements are documented in [report_template.md](report_template.md).
+- **Screenshots:** Gameplay evidence is available in the [screenshots](screenshots/) folder.
+
+**Final Escape Code:** 4729
+
+**Project Status:** Completed and tested.
