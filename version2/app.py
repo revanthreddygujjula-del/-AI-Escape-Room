@@ -27,7 +27,7 @@ if prompt := st.chat_input('Try: look around'):
     key = os.getenv('GEMINI_API_KEY')
     if key:
         try:
-            response = genai.Client(api_key=key).models.generate_content(model=os.getenv('GEMINI_MODEL', 'gemini-2.5-flash'), contents='Add one atmospheric sentence about a mysterious library to this validated outcome, without adding any clues, actions, codes or changes to game state: ' + outcome)
+            response = genai.Client(api_key=key).models.generate_content(model=os.getenv('GEMINI_MODEL', 'gemini-3.8-flash'), contents='Add one atmospheric sentence about a mysterious library to this validated outcome, without adding any clues, actions, codes or changes to game state: ' + outcome)
             if response.text:
                 answer += '\n\n*AI narration (non-authoritative):* ' + response.text
         except Exception:

@@ -17,14 +17,31 @@ for m in st.session_state.messages:
         st.write(m['content'])
 if prompt := st.chat_input('What do you do?'):
     st.session_state.messages.append({'role': 'user', 'content': prompt})
+   
     try:
-        key = os.getenv('GEMINI_API_KEY')
+        key = os.getenv("GEMINI_API_KEY")
         if not key:
-            raise ValueError('Set GEMINI_API_KEY in your .env file')
-        transcript = '\n'.join(f"{m['role']}: {m['content']}" for m in st.session_state.messages)
-        response = genai.Client(api_key=key).models.generate_content(model=os.getenv('GEMINI_MODEL', 'gemini-2.5-flash'), contents=SYSTEM + '\n' + transcript)
-        answer = response.text or 'Try another action.'
+            raise ValueError("Set GEMINI_API_KEY in your .env file")
+
+        transcript = "\n".join(
+            f"{m['role']}: {m['content']}"
+            for m in st.session_state.messages
+        )
+
+        with genai.Client(api_key=key) as client:
+            response = client.models.generate_content(
+                model=os.getenv("GEMINI_MODEL", "gemini-3.8-flash"),
+                contents=SYSTEM + "\n" + transcript
+            )
+
+        answer = response.text or "Try another action."
+
     except Exception as e:
-        answer = f'API error: {e}'
-    st.session_state.messages.append({'role': 'assistant', 'content': answer})
+        answer = f"API error: {e}"
+
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": answer
+    })
     st.rerun()
+
